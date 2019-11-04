@@ -9,7 +9,11 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.create(event_params)
-    redirect_to root_path
+    if @event.valid?
+      redirect_to root_path
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private

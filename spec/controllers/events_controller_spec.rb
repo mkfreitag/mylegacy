@@ -23,6 +23,14 @@ RSpec.describe EventsController, type: :controller do
       event = Event.last
       expect(event.title).to eq("Hello!")
     end
+
+    it "should properly deal with validation errors" do
+      post :create, params: { event: { title: '' } }
+      expect(response).to have_http_status(:unprocessable_entity)
+      expect(Event.count).to eq 0
+    end
+
+
   end
 
 end
