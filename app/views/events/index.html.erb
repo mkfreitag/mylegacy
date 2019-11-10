@@ -5,7 +5,7 @@
 <% @events.each do |event| %>
 <div>
   <%= event.title %>
-  <%= image_tag gram.picture %>
+  <%= image_tag event.picture.to_s %>
   <%= event.date %>
 </div>
 <% end %>
