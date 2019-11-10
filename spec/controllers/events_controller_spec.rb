@@ -1,6 +1,73 @@
 require 'rails_helper'
 
 RSpec.describe EventsController, type: :controller do
+
+  describe "events#destroy action" do
+    it "should allow a user to destroy events" do
+      event = FactoryBot.create(:event)
+      delete :destroy, params: { id: event.id }
+      expect(response). redirect_to root_path
+      event = Event.find_by_id(event.id)
+      expect(event).to eq nil
+    end
+
+    it "should return a 404 message if we cannot find an event with the id that is specified" do
+      delete :destroy, params: { id: 'SPACEDUCK' }
+      expect(response).to have_http_status(:not_found)
+    end
+  end
+
+  describe "events#update action" do
+    it "should allow users to successfully update their events" do
+      event = FactoryBot.create(:event, title: "Initial Value")
+      patch :update, params: { id: event.id, event: { title: 'Changed' } }
+      expect(response).to redirect_to root_path
+      event.reload
+      expect(event.message). to eq "Changed"
+    end
+
+    it "should have http 404 error if the event cannot be found" do
+      patch :update, params: { id: "YOLOSWAG", event: { title: 'Changed' } }
+      expect(response).to have_http_status(:not_found)
+    end
+
+    it "should render the edit form with an http status of unprocessable_entity" do
+      event = FactoryBot.create(:event, title: "Initial Value")
+      patch :update, params: { id: event.id, event: { title: '' } }
+      expect(response).to have_http_status(:unprocessable_entity)
+      gram.reload
+      expect(gram.message).to eq "Initial Value"
+    end
+  end
+
+  describe "events#edit action" do
+    it "should successfully show the edit form if the event is found" do
+      event = FactoryBot.create(:event)
+      get :edit, params: { id: event.id }
+      expect(response).to have_http_status(:success)
+    end
+
+    it "should return a 404 error message if the event is not found" do
+      get :edit, params: { id: 'SWAG'}
+      expect(response).to have_http_status(:not_found)
+    end
+  end
+
+  describe "events#show action" do
+
+    it "should successfully show the page if the event is found" do
+      event = FactoryBot.create(:event)
+      get :show, params: { id: event.id }
+      expect(response).to have_http_status(:success)
+    end
+
+    it "should return a 404 error if the event is not found" do
+      get :show, params: { id: 'TACOCAT'}
+      expect(response).to have_http_status(:not_found)
+    end
+  end
+
+
   describe "events#index action" do
     it "should successfully show the page" do
 
