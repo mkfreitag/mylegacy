@@ -1,1 +1,11 @@
 <h1>Events!</h1>
+
+<a href="events/new">Create a New Event</a>
+
+<% @events.each do |event| %>
+<div>
+  <%= event.title %>
+  <%= image_tag gram.picture %>
+  <%= event.date %>
+</div>
+<% end %>

@@ -1,5 +1,6 @@
 class Event < ApplicationRecord
-  validates :title, presence: true
+  validates :title, :date, presence: true
+  mount_uploader :picture, PictureUploader
 
   belongs_to :user
 end
