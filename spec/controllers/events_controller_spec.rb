@@ -78,14 +78,14 @@ RSpec.describe EventsController, type: :controller do
 
       patch :update, params: { id: event.id, event: { title: '' } }
       expect(response).to have_http_status(:unprocessable_entity)
-      gram.reload
-      expect(gram.message).to eq "Initial Value"
+      event.reload
+      expect(event.message).to eq "Initial Value"
     end
   end
 
   describe "events#edit action" do
 
-    it "shouldn't let a user who did not create the gram edit an event" do
+    it "shouldn't let a user who did not create the event edit an event" do
       event = FactoryBot.create(:event)
       user = FactoryBot.create(:user)
       sign_in user
@@ -180,7 +180,7 @@ RSpec.describe EventsController, type: :controller do
       user = FactoryBot.create(:user)
       sign_in user
 
-      gram_count = Event.count
+      event_count = Event.count
       post :create, params: { event: { title: '' } }
       expect(response).to have_http_status(:unprocessable_entity)
       expect(event_count).to eq Event.count

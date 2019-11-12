@@ -1,11 +1,23 @@
 <h1>Events!</h1>
 
-<a href="events/new">Create a New Event</a>
-
-<% @events.each do |event| %>
 <div>
-  <%= event.title %>
-  <%= image_tag event.picture.to_s %>
-  <%= event.date %>
+  <% @events.each do |event| %>
+  <div>
+    <div><%= event.user.email %></div>
+    <%= image_tag event.picture.to_s, class: 'img-fluid' %>
+    <p>
+      <%= event.title %>
+      <%= event.date %>
+    </p>
+
+    <div>
+      <% if current_user && current_user == event.user %>
+      <%= link_to 'Edit', edit_event_path(event) %>
+      <%= link_to 'Destroy', event_path(event), method: :delete, data: {confirm: 'Are you sure?'} %>
+
+      <% end %>
+    </div>
+    <br/>
+  </div>
+  <% end %>
 </div>
-<% end %>

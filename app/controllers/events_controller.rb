@@ -27,7 +27,7 @@ class EventsController < ApplicationController
   def edit
     @event = Event.find_by_id(params[:id])
     return render_not_found if @event.blank?
-    return render_not_found(:forbidden) if @gram.user != current_user
+    return render_not_found(:forbidden) if @event.user != current_user
 
   end
 
@@ -35,7 +35,7 @@ class EventsController < ApplicationController
     @event = Event.find_by_id(params[:id])
     return render_not_found if @event.blank?
 
-    return render_not_found(:forbidden) if @gram.user != current_user
+    return render_not_found(:forbidden) if @event.user != current_user
 
 
 
@@ -51,7 +51,7 @@ class EventsController < ApplicationController
   def destroy
     @event = Event.find_by_id(params[:id])
     return render_not_found if @event.blank?
-    return render_not_found(:forbidden) if @gram.user != current_user
+    return render_not_found(:forbidden) if @event.user != current_user
 
     @event.destroy
     redirect_to root_path
