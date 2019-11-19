@@ -22,7 +22,7 @@ RSpec.describe EventsController, type: :controller do
       event = FactoryBot.create(:event)
       sign_in event.user
       delete :destroy, params: { id: event.id }
-      expect(response). redirect_to root_path
+      expect(response).to redirect_to root_path
       event = Event.find_by_id(event.id)
       expect(event).to eq nil
     end
@@ -60,7 +60,7 @@ RSpec.describe EventsController, type: :controller do
       patch :update, params: { id: event.id, event: { title: 'Changed' } }
       expect(response).to redirect_to root_path
       event.reload
-      expect(event.message). to eq "Changed"
+      expect(event.title). to eq "Changed"
     end
 
     it "should have http 404 error if the event cannot be found" do
@@ -79,7 +79,7 @@ RSpec.describe EventsController, type: :controller do
       patch :update, params: { id: event.id, event: { title: '' } }
       expect(response).to have_http_status(:unprocessable_entity)
       event.reload
-      expect(event.message).to eq "Initial Value"
+      expect(event.title).to eq "Initial Value"
     end
   end
 
@@ -168,7 +168,7 @@ RSpec.describe EventsController, type: :controller do
       user = FactoryBot.create(:user)
       sign_in user
 
-      post :create, params: { event: { title: 'Hello!' } }
+      post :create, params: { event: { title: 'Hello!', date: Date.new(), picture: fixture_file_upload(Rails.root.join('spec', 'fixtures', 'picture.png').to_s, 'image/png') } }
       expect(response).to redirect_to root_path
 
       event = Event.last
