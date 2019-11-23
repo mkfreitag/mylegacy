@@ -117,23 +117,29 @@ RSpec.describe EventsController, type: :controller do
   end
 
   describe "events#show action" do
-
     it "should successfully show the page if the event is found" do
+      user = FactoryBot.create(:user)
+      sign_in user
       event = FactoryBot.create(:event)
       get :show, params: { id: event.id }
       expect(response).to have_http_status(:success)
+
     end
 
     it "should return a 404 error if the event is not found" do
-      get :show, params: { id: 'TACOCAT'}
+      user = FactoryBot.create(:user)
+      sign_in user
+      get :show, params: { id: 'TACOCAT' }
       expect(response).to have_http_status(:not_found)
+
     end
   end
 
 
   describe "events#index action" do
     it "should successfully show the page" do
-
+      user = FactoryBot.create(:user)
+      sign_in user
       get :index
       expect(response).to have_http_status(:success)
     end
@@ -188,3 +194,5 @@ RSpec.describe EventsController, type: :controller do
   end
 
 end
+
+
