@@ -1,4 +1,8 @@
 FactoryBot.define do
+  factory :artifact do
+    
+  end
+
   factory :install do
     
   end
