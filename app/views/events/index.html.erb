@@ -5,6 +5,8 @@
   <div>
     <div><%= event.user.email %></div>
     <%= image_tag event.picture.to_s, class: 'img-fluid' %>
+    <h1><%= link_to "See Event Artifacts", event_path(event) %></h1><br />
+
     <p>
       <%= event.title %>
       <%= event.date %>

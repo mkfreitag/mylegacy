@@ -1,5 +1,5 @@
 class ArtifactsController < ApplicationController
-  before_action :authenticate_user!, only: [:create]
+  before_action :authenticate_user!
 
   def create
     @event = Event.find_by_id(params[:event_id])

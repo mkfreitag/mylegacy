@@ -1,5 +1,6 @@
 Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'localhost:3030' }
+  config.web_console.whiny_requests = false
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
