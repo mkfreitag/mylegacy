@@ -6,7 +6,7 @@ class CreateArtifacts < ActiveRecord::Migration[5.2]
       t.integer :event_id
       t.timestamps
     end
-    add_index :artifacts, :user_id
+    add_index :artifacts, [:user_id, :event_id]
     add_index :artifacts, :event_id
   end
 end

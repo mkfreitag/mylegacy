@@ -1,2 +1,19 @@
-      <%= @event.title %>
-      <%= @event.date %>
+  <%= @event.title %>
+  <%= @event.date %>
+  <%= @event.picture.to_s %>
+
+  <%= simple_form_for @artifact, url: event_artifacts_path(@event) do |f| %>
+  <%= f.input :comment %>
+  <%= f.submit "Add an Artifact" %>
+  <% end %>
+
+  <h1>Comments</h1>
+
+<% @event.artifacts.each do |artifact| %>
+  <div>
+    <blockquote>
+        <%= artifact.comment %>
+      <small><%= artifact.user.email %></small>
+    </blockquote>
+  </div>
+<% end %>

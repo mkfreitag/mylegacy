@@ -7,7 +7,7 @@ class ArtifactsController < ApplicationController
 
 
     @event.artifacts.create(artifact_params.merge(user: current_user))
-    redirect_to root_path
+    redirect_to event_path(@event)
   end
 
   private
