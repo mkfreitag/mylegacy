@@ -1,15 +1,4 @@
 FactoryBot.define do
-  factory :comment do
-    
-  end
-
-  factory :artifact do
-    
-  end
-
-  factory :install do
-    
-  end
 
 
   factory :user do
@@ -24,6 +13,11 @@ FactoryBot.define do
     title { "hello" }
     date { Date.new()}
     picture { fixture_file_upload(Rails.root.join('spec', 'fixtures', 'picture.png').to_s, 'image/png') }
+    association :user
+  end
+
+    factory :artifact do
+    comment { "hello" }
     association :user
   end
 end

@@ -1,5 +1,5 @@
 require 'rails_helper'
-
+=begin
 RSpec.describe EventsController, type: :controller do
 
   describe "events#destroy action" do
@@ -195,4 +195,4 @@ RSpec.describe EventsController, type: :controller do
 
 end
 
-
+=end

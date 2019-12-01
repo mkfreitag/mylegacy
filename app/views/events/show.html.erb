@@ -9,11 +9,18 @@
 
   <h1>Comments</h1>
 
-<% @event.artifacts.each do |artifact| %>
+  <% @event.artifacts.each do |artifact| %>
   <div>
     <blockquote>
-        <%= artifact.comment %>
+      <%= artifact.comment %>
       <small><%= artifact.user.email %></small>
+      <div>
+        <% if current_user && current_user == @event.user %>
+        <%= link_to 'Edit', edit_event_artifact_path(@event) %>
+        <%= link_to 'Destroy', event_artifact_path(@event), method: :delete, data: {confirm: 'Are you sure?'} %>
+
+        <% end %>
+      </div>
     </blockquote>
+    <% end %>
   </div>
-<% end %>

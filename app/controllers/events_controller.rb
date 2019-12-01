@@ -21,7 +21,6 @@ class EventsController < ApplicationController
   def show
     @event = Event.find_by_id(params[:id])
     return render_not_found if @event.blank?
-
     @artifact = Artifact.new
 
   end
