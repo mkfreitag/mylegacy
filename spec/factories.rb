@@ -16,8 +16,9 @@ FactoryBot.define do
     association :user
   end
 
-    factory :artifact do
+  factory :artifact do
     comment { "hello" }
     association :user
+    event_id {(create :event).id}
   end
 end

@@ -5,11 +5,14 @@ RSpec.describe ArtifactsController, type: :controller do
   describe "artifacts#update action" do
 
     it "should allow users to successfully update their artifacts" do
-
       artifact = FactoryBot.create(:artifact, comment: "lalala")
-      sign_in event.user
 
-      patch :update, params: { id: artifact.id, artifact: { comment: 'Changed' } }
+
+
+      sign_in artifact.event.user
+
+
+      patch :update, params: { event_id: artifact.event_id, id: artifact.id, artifact: { comment: 'Changed' } }
       expect(response).to redirect_to root_path
       artifact.reload
       expect(artifact.comment). to eq "Changed"
@@ -54,4 +57,4 @@ RSpec.describe ArtifactsController, type: :controller do
 
     end
 =end
-  end
+end

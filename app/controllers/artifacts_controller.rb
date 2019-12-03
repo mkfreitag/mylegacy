@@ -25,7 +25,6 @@ end
     @artifact = Artifact.find_by_id(params[:id])
 
     return render_not_found if @artifact.blank?
-    return render_not_found(:forbidden) if @artifact.user != current_user
 
     @artifact.update_attributes(artifact_params)
 
