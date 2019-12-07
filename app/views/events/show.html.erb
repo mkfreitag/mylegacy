@@ -1,6 +1,7 @@
   <%= @event.title %>
   <%= @event.date %>
-  <%= @event.picture.to_s %>
+  <%= image_tag @event.picture.to_s %>
+
 
   <%= simple_form_for @artifact, url: event_artifacts_path(@event) do |f| %>
   <%= f.input :comment %>

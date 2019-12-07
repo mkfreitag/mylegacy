@@ -14,23 +14,29 @@
 
   <div>
     <div>
-      <div>
-        My Legacy
-      </div>
-      <div>
-        <% if current_user %>
-        Welcome, <%= current_user.email %>.
-        <%= link_to "Create New Event", new_event_path %>
-        <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
-        <% else %>
-        <%= link_to "Sign In", new_user_session_path %>
-        <%= link_to "Sign Up", new_user_registration_path %>
-        <% end %>
-      </div>
-    </div>
-    <br/>
-  </div>
+      <ul class="nav">
+        <li class="home">
+         MY LEGACY
+       </li>
 
-  <%= yield %>
+       <% if current_user %>
+       <li>
+        <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: 'links'%>
+      </li>
+      <% else %>
+      <li>
+        <%= link_to "Sign In", new_user_session_path, class: 'links'%>
+      </li>
+      <li>
+        <%= link_to "Sign Up", new_user_registration_path, class: 'links'%>
+      </li>
+      <% end %>
+
+    </ul>
+  </div>
+  <br/>
+</div>
+
+<%= yield %>
 </body>
 </html>

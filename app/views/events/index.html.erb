@@ -1,25 +1,31 @@
-<h1>Events!</h1>
+<div class = "shade col-10 center2">
+  <div class="center">
+    <h1>Events!</h1>
 
-<div>
-  <% @events.each do |event| %>
-  <div>
-    <div><%= event.user.email %></div>
-    <%= image_tag event.picture.to_s, class: 'img-fluid' %>
-    <h1><%= link_to "See Event Artifacts", event_path(event) %></h1><br />
-
-    <p>
-      <%= event.title %>
-      <%= event.date %>
-    </p>
+    <%= link_to "Create New Event", new_event_path %>
 
     <div>
-      <% if current_user && current_user == event.user %>
-      <%= link_to 'Edit', edit_event_path(event) %>
-      <%= link_to 'Destroy', event_path(event), method: :delete, data: {confirm: 'Are you sure?'} %>
+      <% @events.each do |event| %>
+      <div>
+        <div><%= event.user.email %></div>
+        <%= image_tag event.picture.to_s, class: 'img-fluid' %>
+        <h1><%= link_to "See Event Artifacts", event_path(event) %></h1><br />
 
+        <p>
+          <%= event.title %>
+          <%= event.date %>
+        </p>
+
+        <div>
+          <% if current_user && current_user == event.user %>
+          <%= link_to 'Edit', edit_event_path(event) %>
+          <%= link_to 'Destroy', event_path(event), method: :delete, data: {confirm: 'Are you sure?'} %>
+
+          <% end %>
+        </div>
+        <br/>
+      </div>
       <% end %>
     </div>
-    <br/>
   </div>
-  <% end %>
 </div>

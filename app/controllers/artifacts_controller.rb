@@ -7,6 +7,7 @@ class ArtifactsController < ApplicationController
 
   def create
     @event = Event.find_by_id(params[:event_id])
+    @artifact = Artifact.find_by_id(params[:id])
     return render_not_found if @event.blank?
 
 
@@ -15,34 +16,37 @@ class ArtifactsController < ApplicationController
   end
 
   def edit
+    @event = Event.find_by_id(params[:event_id])
     @artifact = Artifact.find_by_id(params[:id])
 
-    return render_not_found if @artifact.blank?
-    return render_not_found(:forbidden) if @event.artifact.user != current_user
-end
+    return render_not_found if @event.artifacts.blank?
+    return render_not_found(:forbidden) if @event.user != current_user
+  end
 
   def update
+    @event = Event.find_by_id(params[:event_id])
     @artifact = Artifact.find_by_id(params[:id])
 
-    return render_not_found if @artifact.blank?
+    return render_not_found if @event.artifacts.blank?
 
-    @artifact.update_attributes(artifact_params)
+    @event.artifact.update_attributes(artifact_params)
 
-    if @artifact.valid?
-      redirect_to root_path
+    if @event.artifacts.valid?
+      redirect_to event_artifact_path
     else
       return render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
+    @event = Event.find_by_id(params[:event_id])
     @artifact = Artifact.find_by_id(params[:id])
 
-    return render_not_found if @artifact.blank?
-    return render_not_found(:forbidden) if @artifact.user != current_user
+    return render_not_found @event.artifacts.blank?
+    return render_not_found(:forbidden) if @event.user != current_user
 
-    @artifact.destroy
-    redirect_to root_path
+    @event.artifacts.destroy
+    redirect_to event_artifact_path
   end
 
   private

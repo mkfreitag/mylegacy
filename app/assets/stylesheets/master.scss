@@ -1,1 +1,46 @@
 @import "bootstrap";
+
+body {
+ background-image: url("blue-back.png");
+ -webkit-background-size: cover;
+ -moz-background-size: cover;
+ -o-background-size: cover;
+ background-size: cover;
+}
+
+.center {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}
+
+.center2 {
+  margin: auto;
+}
+
+.shade {
+  background-color:rgba(0,0,0,.10);
+  padding: 25px;
+}
+
+.nav {
+  background-color: rgba(0,0,0,.10); 
+  list-style-type: none;
+  text-align: center; 
+  padding: 0;
+  margin: 0;
+}
+
+.nav li {
+  display: inline-block;
+  font-size: 20px;
+  padding: 20px;
+}
+
+.home {
+  font-weight: bold;
+}
+
+.links {
+  color: white;
+}
