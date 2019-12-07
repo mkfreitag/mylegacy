@@ -1,6 +1,6 @@
 <h2>Edit Artifact</h2>
 
-<%= simple_form_for :artifact, url: event_artifact_path do |f| %>
+<%= simple_form_for @artifact, url: event_artifact_path do |f| %>
   <%= f.input :comment %>
   <%= f.submit %>
 <% end %>

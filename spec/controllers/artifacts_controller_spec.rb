@@ -5,13 +5,14 @@ RSpec.describe ArtifactsController, type: :controller do
   describe "artifacts#destroy action" do
 
     it "should allow a user to destroy artifacts" do
+      event = FactoryBot.create(:event)
       artifact = FactoryBot.create(:artifact, comment: "lalala")
 
-      sign_in artifact.event.user
+      sign_in artifact.user
 
       delete :destroy, params: { id: artifact.id }
-      expect(response).to redirect_to event_artifact_path
-      expect(event.artifact).to eq nil
+      expect(response).to redirect_to event_path(@event)
+      expect(artifact).to eq nil
     end
 
     it "should return a 404 message if we cannot find an artifact with the id that is specified" do
@@ -31,7 +32,7 @@ RSpec.describe ArtifactsController, type: :controller do
       sign_in artifact.event.user
 
       patch :update, params: { event_id: artifact.event_id, id: artifact.id, artifact: { comment: 'Changed' } }
-      expect(response).to redirect_to event_artifact_path
+      expect(response).to redirect_to redirect_to event_path(@event)
       artifact.reload
       expect(artifact.comment). to eq "Changed"
     end
