@@ -9,9 +9,9 @@ RSpec.describe ArtifactsController, type: :controller do
       artifact = FactoryBot.create(:artifact, comment: "lalala")
 
       sign_in artifact.user
-
-      delete :destroy, params: { id: artifact.id }
-      expect(response).to redirect_to event_path(@event)
+#colon infront of something makes it a symbol, symbol then a colon can be used as an KEY in a hash
+      delete :destroy, params: { event_id: event.id }
+      expect(response).to redirect_to event_path(event_id)
       expect(artifact).to eq nil
     end
 

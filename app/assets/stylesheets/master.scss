@@ -16,6 +16,11 @@ body {
 
 .center2 {
   margin: auto;
+  width: 70%;
+}
+
+.center3 {
+  text-align: center;
 }
 
 .shade {
@@ -48,6 +53,16 @@ body {
 }
 
 .value {
-  color: white;
+  color: black;
   font-size: 50px;
+  font-weight: bold;
+  margin-top: 7%;
+}
+
+.rounder {
+  border-radius: 5%;
+}
+
+.floatR {
+  margin: auto;
 }

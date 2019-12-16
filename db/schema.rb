@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2019_11_23_234642) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_artifacts_on_event_id"
-    t.index ["user_id"], name: "index_artifacts_on_user_id"
+    t.index ["user_id", "event_id"], name: "index_artifacts_on_user_id_and_event_id"
   end
 
   create_table "events", force: :cascade do |t|

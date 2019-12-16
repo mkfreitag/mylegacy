@@ -1,8 +1,15 @@
-<h2>Edit Event</h2>
+<div class="row">
+  <div class="col-3">
 
-<%= simple_form_for @event do |f| %>
-  <%= f.input :title %>
-  <%= f.input :date %>
-  <%= f.input :picture %>
-  <%= f.submit %>
-<% end %>
+  </div>
+  <div class="shade col-10 center2">
+    <h2>Edit Event</h2>
+
+    <%= simple_form_for @event do |f| %>
+    <%= f.input :title %>
+    <%= f.input :date %>
+    <%= f.input :picture %>
+    <%= f.submit %>
+    <% end %>
+  </div>
+</div>
