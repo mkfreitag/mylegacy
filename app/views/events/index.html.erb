@@ -1,37 +1,42 @@
 <div class="row">
   <div class="col-1">
   </div>
-  <div class="shade col-10">
+  <div class="shade rounder col-9">
+    <div id="my-timeline">
+    </div>
+
     <div class="center3">
       <h1>Events!</h1>
     </div>
     <%= link_to "Create New Event", new_event_path, class: 'links btn btn-outline-primary' %>
-  </br>
-</br>
-</br>
-
-
-<div>
-  <% @events.each do |event| %>
-  <div>
-    <%= image_tag event.picture.to_s, class: 'img-fluid' %>
-    <h1><%= link_to "See Event Artifacts", event_path(event), class: 'links' %></h1><br />
-
-    <p>
-      <%= event.title %>
-      <%= event.date %>
-    </p>
-
+  </br></br></br>
+  <div class="center3">
+    <% @events.each do |event| %>
     <div>
-      <% if current_user && current_user == event.user %>
-      <%= link_to 'Edit', edit_event_path(event), class: 'links btn btn-outline-primary' %>
-      <%= link_to 'Destroy', event_path(event), class: 'links btn btn-outline-danger', method: :delete, data: {confirm: 'Are you sure?'} %>
+      <div class="row">
+        <div class="title col-10">
+          <%= event.title%>
+        </div>
+        <div class="date">
+          <%= event.date.strftime("%B %d, %Y")%>
+        </div>
+      </div>
+      <div class="float-right">
+        <% if current_user && current_user == event.user %>
+        <%= link_to 'Edit', edit_event_path(event), class: 'links btn btn-outline-primary' %>
+        <%= link_to 'Destroy', event_path(event), class: 'links btn btn-outline-danger', method: :delete, data: {confirm: 'Are you sure?'} %>
 
-      <% end %>
+        <% end %>
+      </div>
+      <%= image_tag event.picture.to_s, class: 'img-fluid' %>
+      <h1><%= link_to "See Event Artifacts", event_path(event), class: 'links btn btn-outline-primary btn-lg float-left' %></h1><br />
+      <br/>
     </div>
-    <br/>
+    <hr style="border: 1px solid gray;" />
+    <% end %>
   </div>
-  <% end %>
 </div>
 </div>
-</div>
+
+
+

@@ -1,30 +1,44 @@
-  
-<div class="shade col-10 center2">
-  <%= @event.title %>
-  <%= @event.date %>
-  <%= image_tag @event.picture.to_s %>
-
-
-  <%= simple_form_for @artifact, url: event_artifacts_path(@event) do |f| %>
-  <%= f.input :comment %>
-  <%= f.submit "Add an Artifact" %>
-  <% end %>
-
-  <h1>Comments</h1>
-
-  <% @event.artifacts.each do |artifact| %>
-  <div>
-    <blockquote>
-      <%= artifact.comment %>
-      <small><%= artifact.user.email %></small>
-      <div>
-        <% if current_user && current_user == @event.user %>
-        <%= link_to 'Edit', edit_event_artifact_path(@event, artifact) %>
-        <%= link_to 'Destroy', event_artifact_path(@event, artifact), method: :delete, data: {confirm: 'Are you sure?'} %>
-
-        <% end %>
+<div class="row">
+  <div class="col-1">
+  </div>
+  <div class="col-4">
+    <div>
+      <div class="title col-10">
+        <%= @event.title%>
       </div>
-    </blockquote>
+      <div class="date">
+        <%= @event.date.strftime("%B %d, %Y")%>
+      </div>
+    </div>
+    <%= image_tag @event.picture.to_s %>
+  </div>
+  <div class="col-2">
+  </div>
+  <div class="col-4">
+    <%= simple_form_for @artifact, url: event_artifacts_path(@event) do |f| %>
+    <%= f.input :comment %>
+    <%= f.submit "Add an Artifact" %>
     <% end %>
+  </br>
+    <h1>Artifacts</h1>
+    <% @event.artifacts.each do |artifact| %>
+    <div>
+      <blockquote>
+        <div class="shade2 rounder">
+          <%= artifact.comment %>
+        </div>
+        <small><%= artifact.user.email %></small>
+        <div>
+          <% if current_user && current_user == @event.user %>
+          <%= link_to 'Edit', edit_event_artifact_path(@event, artifact), class: 'links btn btn-outline-primary'%>
+          <%= link_to 'Destroy', event_artifact_path(@event, artifact), class: 'links btn btn-outline-danger', method: :delete, data: {confirm: 'Are you sure?'} %>
+
+          <% end %>
+        </div>
+      </blockquote>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-1">
   </div>
 </div>

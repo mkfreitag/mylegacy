@@ -14,11 +14,6 @@ body {
   padding: 10px;
 }
 
-.center2 {
-  margin: auto;
-  width: 70%;
-}
-
 .center3 {
   text-align: center;
 }
@@ -28,6 +23,10 @@ body {
   padding: 25px;
   margin-right: 25px;
   margin-left: 25px;
+}
+.shade2 {
+  background-color:rgba(0,0,0,.10);
+  padding: 10px;
 }
 
 .nav {
@@ -59,10 +58,22 @@ body {
   margin-top: 7%;
 }
 
+.title {
+  color: black;
+  font-size: 30px;
+  text-align: left;
+  font-weight: bold;
+}
+
+.date {
+  color: gray;
+  font-size: 15px;
+}
+
 .rounder {
   border-radius: 5%;
 }
 
 .floatR {
-  margin: auto;
+  margin-right: 0px;
 }
