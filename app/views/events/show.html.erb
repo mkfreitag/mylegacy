@@ -24,10 +24,9 @@
     <% @event.artifacts.each do |artifact| %>
     <div>
       <blockquote>
-        <div class="shade2 rounder">
+        <div class="shade2">
           <%= artifact.comment %>
         </div>
-        <small><%= artifact.user.email %></small>
         <div>
           <% if current_user && current_user == @event.user %>
           <%= link_to 'Edit', edit_event_artifact_path(@event, artifact), class: 'links btn btn-outline-primary'%>
