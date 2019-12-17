@@ -10,9 +10,12 @@ class ArtifactsController < ApplicationController
     @artifact = Artifact.find_by_id(params[:id])
     return render_not_found if @event.blank?
 
-
-    @event.artifacts.create(artifact_params.merge(user: current_user))
-    redirect_to event_path(@event)
+    if @artifact.valid?
+      @event.artifacts.create(artifact_params.merge(user: current_user))
+      redirect_to event_path(@event)
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def edit
@@ -52,7 +55,7 @@ class ArtifactsController < ApplicationController
   private
 
   def artifact_params
-    params.require(:artifact).permit(:comment)
+    params.require(:artifact).permit(:comment, :video)
   end
 
 end

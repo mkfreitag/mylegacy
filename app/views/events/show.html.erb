@@ -2,42 +2,71 @@
   <div class="col-1">
   </div>
   <div class="col-4">
-    <div>
-      <div class="title col-10">
-        <%= @event.title%>
-      </div>
-      <div class="date">
-        <%= @event.date.strftime("%B %d, %Y")%>
-      </div>
+  </div>
+  <div class="fixy">
+    <div class="title">
+      <%= @event.title%>
     </div>
-    <%= image_tag @event.picture.to_s %>
-  </div>
-  <div class="col-2">
-  </div>
-  <div class="col-4">
-    <%= simple_form_for @artifact, url: event_artifacts_path(@event) do |f| %>
-    <%= f.input :comment %>
-    <%= f.submit "Add an Artifact" %>
-    <% end %>
-  </br>
-    <h1>Artifacts</h1>
-    <% @event.artifacts.each do |artifact| %>
-    <div>
-      <blockquote>
-        <div class="shade2">
-          <%= artifact.comment %>
-        </div>
-        <div>
-          <% if current_user && current_user == @event.user %>
-          <%= link_to 'Edit', edit_event_artifact_path(@event, artifact), class: 'links btn btn-outline-primary'%>
-          <%= link_to 'Destroy', event_artifact_path(@event, artifact), class: 'links btn btn-outline-danger', method: :delete, data: {confirm: 'Are you sure?'} %>
-
-          <% end %>
-        </div>
-      </blockquote>
-      <% end %>
+    <div class="date">
+      <%= @event.date.strftime("%B %d, %Y")%>
+    </div>
+    <div class="picfit">
+      <%= image_tag @event.picture.to_s, class: 'img-fluid' %>
     </div>
   </div>
   <div class="col-1">
+  </div>
+  <div class="col-5">
+    <%= simple_form_for @artifact, url: event_artifacts_path(@event) do |f| %>
+    <div class="row">
+      <div class="col-6">
+        <%= f.input :comment %>
+      </div>
+      <div class="col-1">
+        <p class="and">
+          +
+        </p>
+      </div>
+      <div class="col-5">
+        <%= f.input :video %>
+      </div>
+    </div>
+    <%= f.submit "Add an Artifact" %>
+    <% end %>
+  </br>
+  <h1>Artifacts</h1>
+  <% @event.artifacts.each do |artifact| %>
+  <div>
+    <blockquote>
+      <div>
+        <video id="my-video" class="video-js" controls preload="auto" width=auto height=auto
+        poster="MY_VIDEO_POSTER.jpg" data-setup="{}">
+        <source src="<%= artifact.video.to_s %>" type='video/mp4'>.isvalid?
+
+          <noscript>
+            <p class="vjs-no-js">
+              To view this video please enable JavaScript, and consider upgrading to a web browser that
+              <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+            </p>
+          </noscript>
+        </video>
+
+        <div class="shade3">
+          <%= artifact.comment %>
+        </div>
+      </div>
+      <div style="margin-top: 10px">
+        <% if current_user && current_user == @event.user %>
+        <%= link_to 'Edit', edit_event_artifact_path(@event, artifact), class: 'links btn btn-outline-primary'%>
+        <%= link_to 'Destroy', event_artifact_path(@event, artifact), class: 'links btn btn-outline-danger', method: :delete, data: {confirm: 'Are you sure?'} %>
+
+        <% end %>
+      </div>
+    </blockquote>
+    <% end %>
+
+
+    <div class="col-1">
+    </div>
   </div>
 </div>

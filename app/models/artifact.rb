@@ -1,5 +1,6 @@
 class Artifact < ApplicationRecord
-  validates :comment, presence: true
+  validates :comment, :video, presence: true
   belongs_to :event
   belongs_to :user
+  mount_uploader :video, VideoUploader
 end

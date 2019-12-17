@@ -1,7 +1,19 @@
+<div id="timelineNonDate" style="width:200px;"></div>
+<script type="text/javascript">
+var nonDatedata = [
+ {"value": 224, "name": "Player 1" },
+ {"value": 249, "name": "Player 2" },
+ {"value": 297, "name": "Player 3" },
+ {"value": 388, "name": "Player 4" },
+ {"value": 397, "name": "Player 5" },
+ {"value": 418, "name": "Player 6" }
+];
+TimeKnots.draw("#timelineNonDate", nonDatedata, {dateDimension:false, color: "teal", width:500, showLabels: true, labelFormat: "%Y"});
+</script>
 <div class="row">
   <div class="col-1">
   </div>
-  <div class="shade rounder col-9">
+  <div class="shade rounder col-10">
     <div id="my-timeline">
     </div>
 
@@ -21,15 +33,17 @@
           <%= event.date.strftime("%B %d, %Y")%>
         </div>
       </div>
-      <div class="float-right">
+      <div>
+      <div class="float-right space">
         <% if current_user && current_user == event.user %>
         <%= link_to 'Edit', edit_event_path(event), class: 'links btn btn-outline-primary' %>
         <%= link_to 'Destroy', event_path(event), class: 'links btn btn-outline-danger', method: :delete, data: {confirm: 'Are you sure?'} %>
 
         <% end %>
       </div>
+    </div>
       <%= image_tag event.picture.to_s, class: 'img-fluid' %>
-      <h1><%= link_to "See Event Artifacts", event_path(event), class: 'links btn btn-outline-primary btn-lg float-left' %></h1><br />
+      <h1 style="margin-top: 10px"><%= link_to "See Event Artifacts", event_path(event), class: 'links btn btn-outline-primary btn-lg float-left' %></h1><br />
       <br/>
     </div>
     <hr style="border: 1px solid gray;" />
