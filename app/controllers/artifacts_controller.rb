@@ -8,10 +8,9 @@ class ArtifactsController < ApplicationController
   def create
     @event = Event.find_by_id(params[:event_id])
     @artifact = Artifact.find_by_id(params[:id])
-    return render_not_found if @event.blank?
+    @event.artifacts.create(artifact_params.merge(user: current_user))
 
-    if @artifact.valid?
-      @event.artifacts.create(artifact_params.merge(user: current_user))
+    if @event.valid?
       redirect_to event_path(@event)
     else
       render :new, status: :unprocessable_entity
