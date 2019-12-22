@@ -3,6 +3,8 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.all
+    @event_json = @events.map{|event|{"value": event.date.to_s, "name": event.title }}
+    puts "data = #{@event_json}"
   end
 
   def new
