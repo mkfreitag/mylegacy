@@ -1,5 +1,5 @@
 Rails.application.configure do
-config.action_mailer.default_url_options = { host: 'https://mylegacy.herokuapp.com/' }
+  config.action_mailer.default_url_options = { host: 'https://mylegacy.herokuapp.com/' }
 
   # Code is not reloaded between requests.
   config.cache_classes = true
@@ -27,7 +27,8 @@ config.action_mailer.default_url_options = { host: 'https://mylegacy.herokuapp.c
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = false
+  config.serve_static_assets = true
+  config.assets.compile = true
 
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
