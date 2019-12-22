@@ -19,6 +19,6 @@ FactoryBot.define do
   factory :artifact do
     comment { "hello" }
     association :user
-    event_id {(create :event).id}
+    video { fixture_file_upload(Rails.root.join('spec', 'fixtures', 'small.mp4').to_s, 'video/mp4') }
   end
 end

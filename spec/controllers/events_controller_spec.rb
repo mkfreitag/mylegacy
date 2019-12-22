@@ -1,4 +1,3 @@
-=begin
 require 'rails_helper'
 
 RSpec.describe EventsController, type: :controller do
@@ -194,4 +193,3 @@ RSpec.describe EventsController, type: :controller do
     end
   end
 end
-=end

@@ -23,14 +23,14 @@
         </div>
       </div>
       <div>
-      <div class="float-right space">
-        <% if current_user && current_user == event.user %>
-        <%= link_to 'Edit', edit_event_path(event), class: 'links btn btn-outline-primary' %>
-        <%= link_to 'Destroy', event_path(event), class: 'links btn btn-outline-danger', method: :delete, data: {confirm: 'Are you sure?'} %>
+        <div class="float-right space">
+          <% if current_user && current_user == event.user %>
+          <%= link_to 'Edit', edit_event_path(event), class: 'links btn btn-outline-primary' %>
+          <%= link_to 'Destroy', event_path(event), class: 'links btn btn-outline-danger', method: :delete, data: {confirm: 'Are you sure?'} %>
 
-        <% end %>
+          <% end %>
+        </div>
       </div>
-    </div>
       <%= image_tag event.picture.to_s, class: 'img-fluid' %>
       <h1 style="margin-top: 10px"><%= link_to "See Event Artifacts", event_path(event), class: 'links btn btn-outline-primary btn-lg float-left' %></h1><br />
       <br/>
